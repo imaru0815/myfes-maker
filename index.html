@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover" />
+  <title>マイフェスメーカー</title>
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body data-template="rock">
+  <header class="site-header">
+    <h1>マイフェスメーカー</h1>
+    <p>好きなアーティストで、自分だけのフェスタイムテーブルを作ろう。</p>
+  </header>
+
+  <main class="app">
+    <section class="controls">
+      <details open>
+        <summary>1. フェス情報</summary>
+        <label>フェス名</label>
+        <input id="festivalName" value="MBS ROCK FESTIVAL 2026" />
+        <label>サブタイトル</label>
+        <input id="subtitle" value="みんなでつくる、最高の一日。" />
+        <div class="grid2">
+          <div><label>開演</label><input id="startTime" value="11:00" /></div>
+          <div><label>終演</label><input id="endTime" value="21:00" /></div>
+        </div>
+      </details>
+
+      <details open>
+        <summary>2. テンプレート</summary>
+        <div class="template-grid">
+          <button type="button" class="template-btn active" data-template="rock">ROCK</button>
+          <button type="button" class="template-btn" data-template="pop">POP</button>
+          <button type="button" class="template-btn" data-template="night">NIGHT</button>
+          <button type="button" class="template-btn" data-template="forest">FOREST</button>
+          <button type="button" class="template-btn" data-template="minimal">MINIMAL</button>
+        </div>
+      </details>
+
+      <details open>
+        <summary>3. ステージ設定</summary>
+        <div class="grid2">
+          <div><label>通常持ち時間</label><select id="duration"><option value="40">40分</option><option value="50" selected>50分</option><option value="60">60分</option></select></div>
+          <div><label>転換</label><select id="changeover"><option value="20">20分</option><option value="30" selected>30分</option><option value="40">40分</option></select></div>
+        </div>
+        <div class="grid2">
+          <div><label>最後の出演者</label><select id="lastDuration"><option value="90" selected>90分</option><option value="50">通常と同じ</option></select></div>
+          <div><label>ステージ数</label><select id="stageCount"><option value="2">2</option><option value="3" selected>3</option><option value="4">4</option></select></div>
+        </div>
+        <label class="check"><input id="customStageTimes" type="checkbox" />ステージごとに時間を変更する</label>
+        <div id="stageTimeSettings" class="stage-time-settings"></div>
+      </details>
+
+      <details open>
+        <summary>4. ステージ名・色</summary>
+        <div id="stageSettings" class="stage-settings"></div>
+      </details>
+
+      <details open>
+        <summary>5. アーティスト入力</summary>
+        <textarea id="artists">ONE OK ROCK
+[Alexandros]
+King Gnu
+Vaundy
+Official髭男dism
+Mrs. GREEN APPLE
+B'z
+YOASOBI
+back number
+マカロニえんぴつ
+サザンオールスターズ
+ASIAN KUNG-FU GENERATION
+04 Limited Sazabys
+羊文学
+Creepy Nuts</textarea>
+        <p class="note">1行に1組ずつ入力してください。</p>
+      </details>
+
+      <div class="control-actions">
+        <button id="generateBtn" type="button">タイムテーブル生成</button>
+        <button id="shuffleBtn" type="button" class="secondary">シャッフル</button>
+      </div>
+    </section>
+
+    <section class="result">
+      <div id="poster" class="poster">
+        <div class="poster-top">
+          <div>
+            <div id="posterLogo" class="poster-logo"></div>
+            <div id="posterSubtitle" class="poster-subtitle"></div>
+          </div>
+          <div class="poster-meta">MY FES PARK<br>OPEN <span id="openOut"></span><br>START <span id="startOut"></span></div>
+        </div>
+        <div id="stages" class="stages"></div>
+        <div id="warning" class="warning"></div>
+        <div class="poster-footer">© マイフェスメーカー</div>
+      </div>
+
+      <div class="actions">
+        <button id="saveBtn" type="button">画像保存</button>
+        <button id="xSaveBtn" type="button">X用保存<br>1080×1350</button>
+        <button id="shareBtn" type="button" class="secondary">共有</button>
+      </div>
+      <p class="note">iPhoneでは画像が新しいタブで開きます。長押しで保存してください。</p>
+    </section>
+  </main>
+
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
